@@ -5,14 +5,14 @@ import java.util.*;
 
 class Customer {
     private final String name;
-    private final Vector rentals = new Vector();
+    private final List<Rental> rentals = new ArrayList<>();
 
     public Customer(final String customerName) {
         name = customerName;
     }
 
     public void addRental(final Rental rental) {
-        rentals.addElement(rental);
+        rentals.add(rental);
     }
 
     public String getName() {
@@ -22,12 +22,12 @@ class Customer {
     public String statement() {
         double totalAmount = 0;
         int frequentRenterPoints = 0;
-        Enumeration enumRentals = rentals.elements();
+        Iterator<Rental> enumRentals = rentals.iterator();
         String result = String.format("excercise.Rental Record for %s\n\tTitle\t\tDays\tAmount\n", this.getName());
 
-        while (enumRentals.hasMoreElements()) {
+        while (enumRentals.hasNext()) {
             double thisAmount = 0;
-            Rental each = (Rental) enumRentals.nextElement();
+            Rental each = (Rental) enumRentals.next();
             //determine amounts for each line
             thisAmount = amountFor(each);
             // add frequent renter points
