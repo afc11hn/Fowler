@@ -23,8 +23,7 @@ class Customer {
         double totalAmount = 0;
         int frequentRenterPoints = 0;
         Enumeration enumRentals = rentals.elements();
-        String result = "excercise.Rental Record for " + this.getName() + "\n";
-        result += "\t" + "Title" + "\t" + "\t" + "Days" + "\t" + "Amount" + "\n";
+        String result = String.format("excercise.Rental Record for %s\n\tTitle\t\tDays\tAmount\n", this.getName());
 
         while (enumRentals.hasMoreElements()) {
             double thisAmount = 0;
@@ -38,12 +37,12 @@ class Customer {
                 frequentRenterPoints++;
             }
             //show figures for this rental
-            result += "\t" + each.getMovie().getTitle() + "\t" + "\t" + each.getDaysRented() + "\t" + thisAmount + "\n";
+            result += String.format("\t%s\t\t%d\t%s\n", each.getMovie().getTitle(), each.getDaysRented(), thisAmount);
             totalAmount += thisAmount;
         }
         //add footer lines
-        result += "Amount owed is " + totalAmount + "\n";
-        result += "You earned " + frequentRenterPoints + " frequent renter points";
+        result += String.format("Amount owed is %s\n", totalAmount);
+        result += String.format("You earned %d frequent renter points", frequentRenterPoints);
         return result;
     }
 
