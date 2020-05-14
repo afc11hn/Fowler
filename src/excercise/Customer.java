@@ -30,17 +30,13 @@ class Customer {
 
     public String statement() {
         double totalAmount = 0;
-        Iterator<Rental> enumRentals = rentals.iterator();
         String format = String.format("excercise.Rental Record for %s\n\tTitle\t\tDays\tAmount\n", this.getName());
         StringBuilder result = new StringBuilder(format);
 
-        while (enumRentals.hasNext()) {
-            double thisAmount = 0;
-            Rental each = enumRentals.next();
-            //determine amounts for each line
-            thisAmount = amountFor(each);
-            //show figures for this rental
-            result.append(String.format("\t%s\t\t%d\t%s\n", each.getMovie().getTitle(), each.getDaysRented(), thisAmount));
+        for (Rental rental: rentals) {
+            double thisAmount = amountFor(rental);
+            format = String.format("\t%s\t\t%d\t%s\n", rental.getMovie().getTitle(), rental.getDaysRented(), thisAmount);
+            result.append(format);
             totalAmount += thisAmount;
         }
         //add footer lines
