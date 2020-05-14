@@ -19,30 +19,32 @@ class Customer {
         return name;
     }
 
+    public int frequentRenterPoints() {
+        // bonus for a two day new release rental
+        long bonus = rentals.stream()
+                .filter(r -> r.getMovie().getType() == Movie.Type.NEW_RELEASE)
+                .filter(r -> r.getDaysRented() > 1)
+                .count();
+        return rentals.size() + (int) bonus;
+    }
+
     public String statement() {
         double totalAmount = 0;
-        int frequentRenterPoints = 0;
         Iterator<Rental> enumRentals = rentals.iterator();
         String result = String.format("excercise.Rental Record for %s\n\tTitle\t\tDays\tAmount\n", this.getName());
 
         while (enumRentals.hasNext()) {
             double thisAmount = 0;
-            Rental each = (Rental) enumRentals.next();
+            Rental each = enumRentals.next();
             //determine amounts for each line
             thisAmount = amountFor(each);
-            // add frequent renter points
-            frequentRenterPoints++;
-            // add bonus for a two day new release rental
-            if ((each.getMovie().getType() == Movie.Type.NEW_RELEASE) && each.getDaysRented() > 1) {
-                frequentRenterPoints++;
-            }
             //show figures for this rental
             result += String.format("\t%s\t\t%d\t%s\n", each.getMovie().getTitle(), each.getDaysRented(), thisAmount);
             totalAmount += thisAmount;
         }
         //add footer lines
         result += String.format("Amount owed is %s\n", totalAmount);
-        result += String.format("You earned %d frequent renter points", frequentRenterPoints);
+        result += String.format("You earned %d frequent renter points", frequentRenterPoints());
         return result;
     }
 
