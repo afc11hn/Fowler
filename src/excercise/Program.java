@@ -13,7 +13,7 @@ public class Program {
      */
 
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         String result;
         System.out.println("Welcome to the excercise.Movie Store");
         Movie m1 = new Movie("movie1", 1);

@@ -7,7 +7,7 @@ public class Movie {
     private final String title;
     private int priceCode;
 
-    public Movie(String title, int priceCode) {
+    public Movie(final String title, final int priceCode) {
         this.title = title;
         this.priceCode = priceCode;
     }
@@ -16,7 +16,7 @@ public class Movie {
         return priceCode;
     }
 
-    public void setPriceCode(int priceCode) {
+    public void setPriceCode(final int priceCode) {
         this.priceCode = priceCode;
     }
 

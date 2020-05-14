@@ -7,11 +7,11 @@ class Customer {
     private final String name;
     private final Vector rentals = new Vector();
 
-    public Customer(String customerName) {
+    public Customer(final String customerName) {
         name = customerName;
     }
 
-    public void addRental(Rental rental) {
+    public void addRental(final Rental rental) {
         rentals.addElement(rental);
     }
 
@@ -46,7 +46,7 @@ class Customer {
         return result;
     }
 
-    private double amountFor(Rental rental) {
+    private double amountFor(final Rental rental) {
         double thisAmount = 0;
         switch (rental.getMovie().getPriceCode()) {
             case Movie.REGULAR:
