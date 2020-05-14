@@ -16,8 +16,8 @@ public class Program {
     public static void main(final String[] args) {
         String result;
         System.out.println("Welcome to the excercise.Movie Store");
-        Movie m1 = new Movie("movie1", 1);
-        Movie m2 = new Movie("movie2", 2);
+        Movie m1 = new Movie("movie1", Movie.Type.NEW_RELEASE);
+        Movie m2 = new Movie("movie2", Movie.Type.CHILDRENS);
         Rental r1 = new Rental(m1, 10);
         Rental r2 = new Rental(m2, 5);
         Customer c1 = new Customer("joe");

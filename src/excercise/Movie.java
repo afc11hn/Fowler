@@ -1,23 +1,39 @@
 package excercise;
 
 public class Movie {
-    public static final int CHILDRENS = 2;
-    public static final int REGULAR = 0;
-    public static final int NEW_RELEASE = 1;
+
+    enum Type {
+        REGULAR(0),
+        NEW_RELEASE(1),
+        CHILDRENS(2);
+
+
+        private final int value;
+        Type(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
+
+
+    }
+
     private final String title;
-    private int priceCode;
+    private Type type;
 
-    public Movie(final String title, final int priceCode) {
+    public Movie(final String title, final Movie.Type type) {
         this.title = title;
-        this.priceCode = priceCode;
+        this.type = type;
     }
 
-    public int getPriceCode() {
-        return priceCode;
+    public Type getType() {
+        return type;
     }
 
-    public void setPriceCode(final int priceCode) {
-        this.priceCode = priceCode;
+    public void setType(final Movie.Type type) {
+        this.type = type;
     }
 
     public String getTitle() {
