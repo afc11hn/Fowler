@@ -31,7 +31,8 @@ class Customer {
     public String statement() {
         double totalAmount = 0;
         Iterator<Rental> enumRentals = rentals.iterator();
-        String result = String.format("excercise.Rental Record for %s\n\tTitle\t\tDays\tAmount\n", this.getName());
+        String format = String.format("excercise.Rental Record for %s\n\tTitle\t\tDays\tAmount\n", this.getName());
+        StringBuilder result = new StringBuilder(format);
 
         while (enumRentals.hasNext()) {
             double thisAmount = 0;
@@ -39,13 +40,13 @@ class Customer {
             //determine amounts for each line
             thisAmount = amountFor(each);
             //show figures for this rental
-            result += String.format("\t%s\t\t%d\t%s\n", each.getMovie().getTitle(), each.getDaysRented(), thisAmount);
+            result.append(String.format("\t%s\t\t%d\t%s\n", each.getMovie().getTitle(), each.getDaysRented(), thisAmount));
             totalAmount += thisAmount;
         }
         //add footer lines
-        result += String.format("Amount owed is %s\n", totalAmount);
-        result += String.format("You earned %d frequent renter points", frequentRenterPoints());
-        return result;
+        result.append(String.format("Amount owed is %s\n", totalAmount));
+        result.append(String.format("You earned %d frequent renter points", frequentRenterPoints()));
+        return result.toString();
     }
 
     private double amountFor(final Rental rental) {
