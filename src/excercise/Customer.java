@@ -20,12 +20,9 @@ class Customer {
     }
 
     public int frequentRenterPoints() {
-        // bonus for a two day new release rental
-        long bonus = rentals.stream()
-                .filter(r -> r.getMovie().getType() == Movie.Type.NEW_RELEASE)
-                .filter(r -> r.getDaysRented() > 1)
-                .count();
-        return rentals.size() + (int) bonus;
+        return rentals.stream()
+                .mapToInt(Rental::frequentRenterPoints)
+                .sum();
     }
 
     public String statement() {

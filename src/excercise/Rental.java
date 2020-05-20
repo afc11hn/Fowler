@@ -38,4 +38,13 @@ class Rental {
             case CHILDRENS -> amountFor(this, 1.5, 3, 1.5);
         };
     }
+
+    public int frequentRenterPoints() {
+        int bonus = 1;
+        if (getMovie().getType() == Movie.Type.NEW_RELEASE && daysRented > 1) {
+            bonus++;
+        }
+
+        return bonus;
+    }
 }
