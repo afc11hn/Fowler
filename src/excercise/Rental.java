@@ -9,7 +9,7 @@ class Rental {
         this.daysRented = daysRented;
     }
 
-    static double amountFor(final Rental rental, final double basePrice, final int maximumRentalDays, final double rentalRate) {
+    private static double amountFor(final Rental rental, final double basePrice, final int maximumRentalDays, final double rentalRate) {
         final int daysRented = rental.getDaysRented();
 
         if (daysRented>maximumRentalDays) {
@@ -31,7 +31,7 @@ class Rental {
     }
 
 
-    double amountFor() {
+    public double amountFor() {
         return switch (getMovie().getType()) {
             case REGULAR -> amountFor(this, 2, 2, 1.5);
             case NEW_RELEASE -> amountFor(this, 0, 0, 3);
